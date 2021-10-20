@@ -1,18 +1,15 @@
 import './App.css';
-import Header from "./components/Header/Header";
-import Content from "./components/Content/Content";
-import ModalForm from "./components/ModalForm/ModalForm";
-import {useState} from "react";
+import React from "react";
+import {Route, Switch} from "react-router-dom";
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
 
 function App() {
     return (
-        <div className="container mx-auto">
-            <Header/>
-            <div className="grid grid-cols-12 gap-x-10 m-4">
-                <Content/>
-            </div>
-        </div>
-
+        <Switch>
+            <Route path={"/"} component={Home} exact/>
+            <Route path={"/login"} component={Login} />
+        </Switch>
     );
 }
 

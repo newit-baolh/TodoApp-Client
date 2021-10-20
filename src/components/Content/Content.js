@@ -15,7 +15,7 @@ function Content(props) {
             <div className="text-left pb-2 ml-6 mt-5">
                 <ModalForm/>
             </div>
-            <div className=" flex justify-start items-center mx-6 mt-4 relative ">
+            <div className="flex justify-start items-center mx-6 mt-4 relative mb-10">
                 <Search/>
                 <Sort/>
             </div>

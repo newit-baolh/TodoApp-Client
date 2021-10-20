@@ -4,9 +4,9 @@ Sort.propTypes = {};
 
 function Sort(props) {
     return (
-        <div className="bg-blue-500 ml-20 rounded-2xl ">
+        <div className="absolute top-0 right-64 bg-blue-500 ml-20 rounded-2xl ">
             <select
-                className="select-primary block w-full px-7 py-1.5 outline-none  border border-blue-200 bg-blue-400 rounded rounded-md text-white"
+                className="block w-full px-7 py-1.5 outline-none  border border-blue-200 bg-blue-400 rounded rounded-md text-white"
             >
                 <option selected={true} disabled="disabled">Sắp xếp</option>
                 <option value="1">Tên A - Z</option>

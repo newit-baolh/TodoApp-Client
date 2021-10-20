@@ -7,7 +7,7 @@ Search.propTypes = {
 
 function Search(props) {
     return (
-        <div className="w-2/3  ">
+        <div className="w-2/3 absolute top-0 left-0">
             <input
                 type="text"
                 placeholder="Nhập từ khoá tìm kiếm..."
