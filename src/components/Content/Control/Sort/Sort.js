@@ -8,7 +8,7 @@ function Sort(props) {
             <select
                 className="block w-full px-7 py-1.5 outline-none  border border-blue-200 bg-blue-400 rounded rounded-md text-white"
             >
-                <option selected={true} disabled="disabled">Sắp xếp</option>
+                <option defaultValue={true} disabled="disabled">Sắp xếp</option>
                 <option value="1">Tên A - Z</option>
                 <option value="2">Tên Z - A</option>
                 <option value="3">Cần làm</option>

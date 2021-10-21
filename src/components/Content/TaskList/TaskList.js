@@ -19,7 +19,7 @@ function TaskList(props) {
             </tr>
             </thead>
             <tbody>
-            <TaskItem/>
+            <TaskItem data={props.data}/>
             </tbody>
         </table>
     );

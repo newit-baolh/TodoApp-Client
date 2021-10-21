@@ -3,6 +3,7 @@ import Content from "../Content/Content";
 import React from "react";
 
 function Home() {
+
     return (
         <>
             <Header/>

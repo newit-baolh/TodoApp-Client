@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import Search from "./Control/Search/Search";
 import Sort from "./Control/Sort/Sort";
 import TaskList from "./TaskList/TaskList";
 import Pagination from "./Pagination/Pagination";
 import ModalForm from "../ModalForm/ModalForm";
+import {getList} from "../../services/Services";
 
 
 function Content(props) {
-
+    const [data, setData]= useState([])
+    useEffect(()=>{
+        getList.then(res=> setData(res)).catch(err=> `Had problem ${err}`)
+        return ()=>{
+            getList.then(res=> setData(res)).catch(err=> `Had problem ${err}`)
+        }
+    },[data])
 
     return (
         <div className="text-center col-end-13 col-span-12 rounded-lg shadow-lg border border-gray-200 ">
@@ -21,7 +28,7 @@ function Content(props) {
             </div>
             <div className="bg-white rounded-lg py-6">
                 <div className="block overflow-x-auto mx-6 pb-5">
-                <TaskList/>
+                <TaskList data={data}/>
                 </div>
                 <Pagination/>
             </div>
