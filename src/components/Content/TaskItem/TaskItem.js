@@ -14,8 +14,8 @@ function TaskItem(props) {
     return (
         <>{
             data && data.map((item, index)=>(
-                <tr className={
-                    item.status !== "Đã làm"
+                <tr key={index} className={
+                    item.status !== "Đã xong"
                     ? "w-full font-light text-gray-700  whitespace-no-wrap border border-b-1 "
                     : "w-full font-light text-gray-700  whitespace-no-wrap border border-b-1 bg-gray-200"
                 }>
@@ -33,7 +33,7 @@ function TaskItem(props) {
                     ? "Đang làm"
                     : (item.status === "Cần làm"
                         ? "Cần làm"
-                        : "Đã làm")}
+                        : "Đã xong")}
               </span>
                     </td>
                     <td className="px-4 py-4">

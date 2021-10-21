@@ -1,12 +1,24 @@
 import React, {useRef, useState, useEffect} from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-ModalForm.propTypes = {};
+ModalForm.propTypes = {
+    onSubmit: PropTypes.func,
+};
+ModalForm.defaultProps = {
+    onSubmit: null
+}
 
-function ModalForm() {
+function ModalForm(props) {
 
+    const {onSubmit} = props
     const triggerRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
+    const [inputValues, setInputValues] = useState({
+        id: "",
+        name: "",
+        status: "Cần làm",
+        description: ""
+    })
 
     useEffect(() => {
         const useDetectClickOutSide = (e) => {
@@ -23,6 +35,24 @@ function ModalForm() {
         }
     }, [])
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (!onSubmit) return
+        const formValues = {
+            data: inputValues
+        }
+        onSubmit(formValues)
+        setInputValues({
+            name: "",
+            status: "Cần làm",
+            description: ""
+        })
+        setShowModal(false)
+    }
+    const onChange = (e) => {
+        const {name, value} = e.target;
+        setInputValues({...inputValues, [name]: value})
+    }
 
     return (
         <>
@@ -32,8 +62,8 @@ function ModalForm() {
             </button>
             {showModal && (
                 <div>
-                    <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <form onSubmit={handleSubmit}
+                          className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-1/2 my-6 mx-auto max-w-3xl">
                             {/*content*/}
                             <div ref={triggerRef}
@@ -61,6 +91,9 @@ function ModalForm() {
                                     <div className="py-3">
                                         <label className="block text-left pb-2 text-gray-700">Tên công việc</label>
                                         <input
+                                            name="name"
+                                            value={inputValues.name}
+                                            onChange={onChange}
                                             className=" py-1.5 w-full bg-gray-100 px-4 outline-none"
                                             type="text"
                                             placeholder="Nhập tên công việc"
@@ -69,6 +102,9 @@ function ModalForm() {
                                     <div className="py-5 text-left">
                                         <label className=" block pb-2 text-gray-700">Trạng thái</label>
                                         <select
+                                            name="status"
+                                            value={inputValues.status}
+                                            onChange={onChange}
                                             className="block w-full bg-gray-100 py-1.5 px-4 outline-none  "
                                         >
                                             <option>Cần làm</option>
@@ -78,7 +114,8 @@ function ModalForm() {
                                     </div>
                                     <label className="block text-left">
                                         <span className="text-gray-700">Mô tả</span>
-                                        <textarea className="form-textarea mt-1 block w-full border border-gray-300 p-2"
+                                        <textarea name="description" value={inputValues.description} onChange={onChange}
+                                                  className="form-textarea mt-1 block w-full border border-gray-300 p-2"
                                                   rows="3" placeholder="Thêm mô tả."/>
                                     </label>
                                 </div>
@@ -95,15 +132,14 @@ function ModalForm() {
                                     </button>
                                     <button
                                         className="bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={() => setShowModal(false)}
+                                        type="submit"
                                     >
                                         Save Changes
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <div className="opacity-25 fixed inset-0 z-40 bg-black"/>
                 </div>)}
         </>
