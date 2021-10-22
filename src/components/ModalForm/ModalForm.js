@@ -5,20 +5,38 @@ ModalForm.propTypes = {
     onSubmit: PropTypes.func,
 };
 ModalForm.defaultProps = {
-    onSubmit: null
+    onSubmit: null,
 }
 
 function ModalForm(props) {
 
-    const {onSubmit} = props
+    const {onSubmit, edit} = props
     const triggerRef = useRef(null)
     const [showModal, setShowModal] = useState(false)
+    const [editing, setEditing] = useState(null)
     const [inputValues, setInputValues] = useState({
         id: "",
         name: "",
         status: "Cần làm",
         description: ""
     })
+
+    useEffect(() => {
+        if (editing !== null) {
+            setShowModal(true)
+            setInputValues({
+                ...inputValues,
+                id: editing.id,
+                name: editing.name,
+                status: editing.status,
+                description: editing.description
+            })
+        }
+        return ()=>{
+            setEditing(edit)
+        }
+
+    }, [ edit,editing,inputValues])
 
     useEffect(() => {
         const useDetectClickOutSide = (e) => {
@@ -41,8 +59,10 @@ function ModalForm(props) {
         const formValues = {
             data: inputValues
         }
+
         onSubmit(formValues)
         setInputValues({
+            id:"",
             name: "",
             status: "Cần làm",
             description: ""
@@ -54,10 +74,19 @@ function ModalForm(props) {
         setInputValues({...inputValues, [name]: value})
     }
 
+
     return (
         <>
             <button className="bg-blue-500 py-2 px-10 rounded-md text-white hover:bg-blue-400"
-                    onClick={() => setShowModal(true)}>
+                    onClick={() => {
+                        setShowModal(true)
+                        setInputValues({
+                            id: "",
+                            name: "",
+                            status: "Cần làm",
+                            description: ""
+                        })
+                    }}>
                 <i className="fas fa-plus-circle"/>&nbsp; Thêm mới
             </button>
             {showModal && (

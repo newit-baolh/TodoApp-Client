@@ -1,16 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {getList} from "../../../services/Services";
 
 TaskItem.propTypes = {
-    
+    onDelete: PropTypes.func,
+    onEdit: PropTypes.func,
 };
+TaskItem.defaultProps = {
+    onDelete: null,
+    onEdit: null
+}
 
 function TaskItem(props) {
+    const {onDelete,onEdit} = props
     const[data, setData] = useState([])
     useEffect(()=>{
         setData(props.data)
     })
+
     return (
         <>{
             data && data.map((item, index)=>(
@@ -42,6 +48,7 @@ function TaskItem(props) {
                     <td className="text-center px-3 py-4 flex gap-5">
                         <button>
                             <svg
+                                onClick={()=>onEdit(item)}
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-6 w-6 text-blue-400"
                                 fill="none"
@@ -58,6 +65,7 @@ function TaskItem(props) {
                         </button>
                         <button>
                             <svg
+                                onClick={()=>onDelete(item)}
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-6 w-6 text-red-400"
                                 fill="none"

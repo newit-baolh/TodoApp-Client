@@ -19,7 +19,7 @@ function TaskList(props) {
             </tr>
             </thead>
             <tbody>
-            <TaskItem data={props.data}/>
+            <TaskItem data={props.data} onDelete={props.onDelete} onEdit={props.onEdit}/>
             </tbody>
         </table>
     );
