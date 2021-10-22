@@ -20,15 +20,17 @@ function Content() {
     }, [])
 
     const onSubmitData = (value) => {
-        console.log(value)
         if (value.data.id === "") {
-            createTask(value).then(res => setData([...data, res.data])).catch(err => `Had problem ${err}`)
+            onCreate(value)
         } else {
             onUpdate(value)
-            updateTask(value.data).then(res => console.log(res)).catch(err => `Had problem ${err}`)
         }
     }
-
+    // Tạo 1 task mới
+    const onCreate = (value)=>{
+        createTask(value).then(res => setData([...data, res.data])).catch(err => `Had problem ${err}`)
+    }
+    // Xoá 1 task
     const onDelete = (item) => {
         const newData = [...data]
         const index = newData.findIndex(ele => ele.id === item.id)
@@ -39,18 +41,24 @@ function Content() {
         deleteTask(item)
 
     }
-    const onUpdate = (item) => {
-        console.log(item.data)
-        const newData = [...data]
-        const index = newData.findIndex(ele => ele.id === item.data.id)
+    // Cập nhật lại 1 task
+    const onUpdate = (value) => {
+        let newData = [...data]
+        const index = newData.findIndex(ele => ele.id === value.data.id)
         if (index !== -1) {
-            newData[index]= item.data
+            updateTask(value.data)
+                .then(res => {
+                    newData[index] = res.data
+                    setData(newData)
+                })
+                .catch(err => `Had problem ${err}`)
         }
     }
+
     // cleanup code edit after edit change
-    useEffect(()=>{
+    useEffect(() => {
         setEdit(null)
-    },[edit])
+    }, [edit])
 
     return (
         <div className="text-center col-end-13 col-span-12 rounded-lg shadow-lg border border-gray-200 ">
@@ -63,7 +71,7 @@ function Content() {
             </div>
             <div className="bg-white rounded-lg py-6">
                 <div className="block overflow-x-auto mx-6 pb-5">
-                    <TaskList data={data} onDelete={onDelete} onEdit={(item)=>setEdit(item)}/>
+                    <TaskList data={data} onDelete={onDelete} onEdit={(item) => setEdit(item)}/>
                 </div>
                 <Pagination/>
             </div>
