@@ -4,7 +4,7 @@ Sort.propTypes = {};
 
 function Sort(props) {
     return (
-        <div className="absolute top-0 right-64 bg-blue-500 ml-20 rounded-2xl ">
+        <div className="absolute top-0 right-32 bg-blue-500 ml-20 rounded-2xl ">
             <select
                 className="block w-full px-7 py-1.5 outline-none  border border-blue-200 bg-blue-400 rounded rounded-md text-white"
             >

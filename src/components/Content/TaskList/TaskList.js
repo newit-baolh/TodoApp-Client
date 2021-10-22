@@ -8,7 +8,7 @@ TaskList.propTypes = {
 
 function TaskList(props) {
     return (
-        <table className="w-full text-left rounded-lg table-auto">
+        <table className="w-full text-center rounded-lg table-auto ">
             <thead>
             <tr className="text-gray-800 border border-b-0 bg-blue-300">
                 <th className="px-4 py-3">#</th>

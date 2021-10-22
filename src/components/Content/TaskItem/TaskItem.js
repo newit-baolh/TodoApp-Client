@@ -61,7 +61,7 @@ function TaskItem(props) {
                     <td className="px-4 py-4">
                         <span className="bg-blue-200 px-6 rounded-md py-2">{dateTime[index]}</span>
                     </td>
-                    <td className="text-center px-3 py-4 flex gap-5">
+                    <td className="text-center px-4 py-4 flex gap-5 items-center justify-center">
                         <button>
                             <svg
                                 onClick={() => onEdit(item)}
