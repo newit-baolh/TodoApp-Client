@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 Pagination.propTypes = {
@@ -6,6 +6,7 @@ Pagination.propTypes = {
 };
 
 function Pagination(props) {
+
     return (
         <nav aria-label="Page navigation">
             <ul className="inline-flex space-x-2">

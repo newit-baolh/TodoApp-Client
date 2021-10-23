@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:/Docker/frontend/.idea/frontend.iml" filepath="E:/Docker/frontend/.idea/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/todo.iml" filepath="$PROJECT_DIR$/.idea/todo.iml" />
     </modules>
   </component>

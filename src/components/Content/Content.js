@@ -5,6 +5,7 @@ import TaskList from "./TaskList/TaskList";
 import Pagination from "./Pagination/Pagination";
 import ModalForm from "../ModalForm/ModalForm";
 import {createTask, deleteTask, getList, updateTask} from "../../services/Services";
+import userServices from "../../services/user.service";
 
 
 function Content() {
@@ -82,6 +83,7 @@ function Content() {
             setData(filters.result)
         }
     }
+
     return (
         <div className="text-center col-end-13 col-span-12 rounded-lg shadow-lg border border-gray-200 ">
             <div className="text-left pb-2 ml-6 mt-5">
@@ -95,7 +97,7 @@ function Content() {
                 <div className="block overflow-x-auto mx-6 pb-5">
                     <TaskList data={data} onDelete={onDelete} onEdit={(item) => setEdit(item)}/>
                 </div>
-                <Pagination/>
+
             </div>
         </div>
     );
