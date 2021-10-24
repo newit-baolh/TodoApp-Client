@@ -7,7 +7,6 @@ import ModalForm from "../ModalForm/ModalForm";
 import {createTask, deleteTask, getList, updateTask} from "../../services/Services";
 
 
-
 function Content(props) {
     const [data, setData] = useState([])
     const [edit, setEdit] = useState(null)
@@ -24,6 +23,7 @@ function Content(props) {
         }
     }, [])
 
+
     const onSubmitData = (value) => {
         if (value.data.id === "") {
             onCreate(value)
@@ -32,7 +32,7 @@ function Content(props) {
         }
     }
     // Tạo 1 task mới
-    const onCreate = (value)=>{
+    const onCreate = (value) => {
         createTask(value).then(res => setData([...data, res.data])).catch(err => `Had problem ${err}`)
     }
     // Xoá 1 task
@@ -86,7 +86,53 @@ function Content(props) {
     const displayItemsPage = data.slice(pagesVisited, pagesVisited + itemsPerPage)
     const pageCount = Math.ceil(data.length / itemsPerPage)
     const paginated = {
-        displayItemsPage,pageCount
+        displayItemsPage, pageCount
+    }
+    // Sort data
+    const handleSort = (value) => {
+        let newData = [...filters]
+        switch (value) {
+            case "increase":
+                newData.sort((a, b) => {
+                    return a.name.localeCompare(b.name)
+                })
+                setData(newData)
+                break
+            case "decrease":
+                newData.sort((a, b) => {
+                    return b.name.localeCompare(a.name)
+                })
+                setData(newData)
+                break
+            case "make":
+                let make =  newData.filter(item => {
+                let a = item.status
+                let b = "Cần làm"
+                return a.includes(b)
+            })
+                setData(make)
+                break
+            case "pending":
+                let pending =  newData.filter(item => {
+                    let a = item.status
+                    let b = "Đang làm"
+                    return a.includes(b)
+                })
+                setData(pending)
+                break
+            case "finish":
+              let finish =  newData.filter(item => {
+                    let a = item.status
+                    let b = "Đã xong"
+                    return a.includes(b)
+                })
+                setData(finish)
+                break
+            default:
+                setData(newData)
+                break
+        }
+
     }
 
     return (
@@ -96,13 +142,13 @@ function Content(props) {
             </div>
             <div className="flex justify-start items-center mx-6 mt-4 relative mb-10">
                 <Search onSearch={onSearchItem}/>
-                <Sort/>
+                <Sort onSort={handleSort}/>
             </div>
             <div className="bg-white rounded-lg py-6 z-10">
                 <div className="block overflow-x-auto mx-6 pb-5 z-10">
                     <TaskList data={data} onDelete={onDelete} onEdit={(item) => setEdit(item)} paginated={paginated}/>
                 </div>
-                <Pagination data={data} paginated={paginated} pageNumber={(item)=>setPageNumber(item)}/>
+                <Pagination data={data} paginated={paginated} pageNumber={(item) => setPageNumber(item)}/>
             </div>
         </div>
     );
