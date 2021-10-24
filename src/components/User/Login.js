@@ -82,7 +82,7 @@ function Login(props) {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 ">
             <div className="px-8 py-6 mt-4 text-left bg-white shadow-lg w-1/4">
-                <h3 className="text-2xl font-bold text-center">Login</h3>
+                <h3 className="text-2xl font-bold text-center">Đăng nhập</h3>
                 <Form action="" onSubmit={handleLogin} ref={formRef}>
                     <div className="mt-4">
                         <div>
@@ -98,9 +98,9 @@ function Login(props) {
                             />
                         </div>
                         <div className="mt-4">
-                            <label className="block">Password</label>
+                            <label className="block">Mật khẩu</label>
                             <Input type="password"
-                                   placeholder="Password"
+                                   placeholder="Mật khẩu"
                                    className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                                    onChange={onChangePassword}
                                    name="password"
@@ -114,12 +114,12 @@ function Login(props) {
                                     <path d="M 25.394531 2.0605469 C 20.64091 1.9695865 15.987252 3.3611197 12.138672 5.9726562 C 8.2784778 8.5815405 5.1347795 12.355546 3.3613281 17.154297 L 5.2382812 17.845703 C 6.864483 13.445393 9.7209952 10.019967 13.259766 7.6289062 A 1.0001 1.0001 0 0 0 13.261719 7.6269531 C 18.597216 4.0064374 25.663997 2.9517511 32.154297 5.3378906 C 35.782713 6.6746757 38.735033 8.8643601 41.033203 11.542969 C 42.943053 13.835385 44.277409 16.403211 45.142578 19.287109 L 47.058594 18.712891 C 46.123983 15.597675 44.657565 12.766813 42.568359 10.259766 A 1.0001 1.0001 0 0 0 42.558594 10.25 C 40.057785 7.3323897 36.813537 4.922771 32.845703 3.4609375 C 31.068278 2.8074724 29.25189 2.3894124 27.435547 2.1914062 C 26.754418 2.117154 26.07362 2.0735412 25.394531 2.0605469 z">
                                     </path>
                                 </svg>)}
-                                Login
+                                Đăng nhập
                             </button>
                         </div>
-                        <Link to={"#"} className="text-sm text-blue-600 hover:underline">Forgot password?</Link>
+                        <Link to={"#"} className="text-sm text-blue-600 hover:underline">Quên mật khẩu?</Link>
                         <div className="text-sm block">Tạo tài khoản mới tại đây 👉
-                            <Link className="text-blue-500 underline" to={"/signup"} >Sign Up</Link>
+                            <Link className="text-blue-500 underline" to={"/signup"} >Đăng ký</Link>
                         </div>
                         {message && <div
                             className="text-red-500 px-2 py-2 mt-5"

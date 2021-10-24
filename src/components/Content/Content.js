@@ -5,28 +5,24 @@ import TaskList from "./TaskList/TaskList";
 import Pagination from "./Pagination/Pagination";
 import ModalForm from "../ModalForm/ModalForm";
 import {createTask, deleteTask, getList, updateTask} from "../../services/Services";
-import userServices from "../../services/user.service";
 
 
-function Content() {
+
+function Content(props) {
     const [data, setData] = useState([])
     const [edit, setEdit] = useState(null)
-    const [filters, setFilters] = useState({
-        result: [],
-        keyword: ""
-    })
-
+    const [filters, setFilters] = useState([])
+    const [pageNumber, setPageNumber] = useState(0)
 
     useEffect(() => {
         getList().then(res => {
             setData(res)
-            setFilters({...filters,result: res})
+            setFilters(res)
         }).catch(err => `Had problem ${err}`)
         return () => {
             getList().then(res => setData(res)).catch(err => `Had problem ${err}`)
         }
     }, [])
-
 
     const onSubmitData = (value) => {
         if (value.data.id === "") {
@@ -72,7 +68,7 @@ function Content() {
     const onSearchItem = (value) => {
         const keyword = value.keyword
         if (value.search !== "") {
-            const filterData = filters.result.filter(item => {
+            const filterData = filters.filter(item => {
                 let a = item.name.toLowerCase()
                 let b = keyword.toLowerCase()
                 return a.includes(b)
@@ -80,8 +76,17 @@ function Content() {
             setData(filterData)
 
         } else {
-            setData(filters.result)
+            setData(filters)
         }
+    }
+
+    // Pagination
+    const itemsPerPage = 5
+    const pagesVisited = pageNumber * itemsPerPage
+    const displayItemsPage = data.slice(pagesVisited, pagesVisited + itemsPerPage)
+    const pageCount = Math.ceil(data.length / itemsPerPage)
+    const paginated = {
+        displayItemsPage,pageCount
     }
 
     return (
@@ -95,9 +100,9 @@ function Content() {
             </div>
             <div className="bg-white rounded-lg py-6">
                 <div className="block overflow-x-auto mx-6 pb-5">
-                    <TaskList data={data} onDelete={onDelete} onEdit={(item) => setEdit(item)}/>
+                    <TaskList data={data} onDelete={onDelete} onEdit={(item) => setEdit(item)} paginated={paginated}/>
                 </div>
-
+                <Pagination data={data} paginated={paginated} pageNumber={(item)=>setPageNumber(item)}/>
             </div>
         </div>
     );

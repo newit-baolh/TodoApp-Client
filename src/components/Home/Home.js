@@ -1,12 +1,13 @@
 import Header from "../Header/Header";
 import Content from "../Content/Content";
 import React from "react";
+import Navbar from "../Header/Navbar";
 
 function Home() {
 
     return (
         <>
-            <Header/>
+            <Navbar/>
             <div className="container mx-auto">
                 <h1 className="text-4xl text-center font-bold py-4 border-b-2 ">
                     QUẢN LÝ CÔNG VIỆC

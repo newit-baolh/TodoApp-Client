@@ -7,6 +7,7 @@ TaskList.propTypes = {
 };
 
 function TaskList(props) {
+
     return (
         <table className="w-full text-center rounded-lg table-auto ">
             <thead>
@@ -19,7 +20,7 @@ function TaskList(props) {
             </tr>
             </thead>
             <tbody>
-            <TaskItem data={props.data} onDelete={props.onDelete} onEdit={props.onEdit}/>
+            <TaskItem data={props.data} onDelete={props.onDelete} onEdit={props.onEdit} paginated={props.paginated}/>
             </tbody>
         </table>
     );

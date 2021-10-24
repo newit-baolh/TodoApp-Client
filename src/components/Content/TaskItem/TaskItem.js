@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import Pagination from "../Pagination/Pagination";
-import ReactPaginate from 'react-paginate'
 
 TaskItem.propTypes = {
     onDelete: PropTypes.func,
@@ -14,12 +12,12 @@ TaskItem.defaultProps = {
 
 function TaskItem(props) {
 
-    const [pageNumber, setPageNumber] = useState(0)
     const {onDelete, onEdit} = props
     const [data, setData] = useState([])
     useEffect(() => {
-        setData(props.data)
-    })
+        setData(props.paginated.displayItemsPage)
+    },[props.paginated.displayItemsPage])
+
     const dateTime = data.map(item => {
         const dateString = item.updatedAt
         const formatDate = (dateString) => {
@@ -35,21 +33,9 @@ function TaskItem(props) {
         }
         return formatDate(dateString)
     })
-
-
-    const itemsPerPage = 10
-    const pagesVisited = pageNumber * itemsPerPage
-
-    const displayItems = data.slice(pagesVisited, pagesVisited + itemsPerPage)
-
-    const pageCount = Math.ceil(data.length / itemsPerPage)
-    const changePage = ({selected}) => {
-        setPageNumber(selected)
-    }
-
     return (
         <>{
-            data && displayItems.map((item, index) => (
+            data && data.map((item, index) => (
                 <tr key={index} className={
                     item.status !== "Đã xong"
                         ? "w-full font-light text-gray-700  whitespace-no-wrap border border-b-1 "
@@ -114,32 +100,6 @@ function TaskItem(props) {
                 </tr>
             ))
         }
-            <ReactPaginate
-                previousLabel={<button
-                    className="flex items-center justify-center w-8 h-8 text-indigo-600 transition-colors duration-150 rounded-full focus:shadow-outline hover:bg-indigo-100">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clipRule="evenodd" fillRule="evenodd"/>
-                    </svg>
-                </button>}
-                nextLabel={<button
-                    className="flex items-center justify-center w-8 h-8 text-indigo-600 transition-colors duration-150 bg-white rounded-full focus:shadow-outline hover:bg-indigo-100">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clipRule="evenodd" fillRule="evenodd"/>
-                    </svg>
-                </button>}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                breakLabel={"Break"}
-                containerClassName={"paginationBtn"}
-                previousLinkClassName={'previousBtn'}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationaActive"}
-            />
         </>
     );
 }

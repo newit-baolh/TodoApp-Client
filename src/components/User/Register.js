@@ -103,17 +103,15 @@ function Register(props) {
 
 
     return (
-        <>
-            <Header/>
             <div className="bg-gray-100 min-h-screen flex flex-col">
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                     <Form ref={formRef} onSubmit={handleRegister}
                           className="bg-white rounded shadow-md text-black w-full">
                         {!successful && (
                             <div className="px-4 py-4">
-                                <h1 className="mb-8 text-3xl text-center font-bold ">Sign up</h1>
+                                <h1 className="mb-8 text-3xl text-center font-bold ">Đăng ký</h1>
 
-                                <div className="mt-4"><label className="block">Username</label>
+                                <div className="mt-4 text-md"><label className="block">Tên đăng nhập</label>
                                     <Input
                                         onChange={onChangeUsername}
                                         type="text"
@@ -121,7 +119,7 @@ function Register(props) {
                                         name="username"
                                         value={username}
                                         validations={[required, checkUsername]}
-                                        placeholder="Username"/></div>
+                                        placeholder="Tên đăng nhập"/></div>
 
                                 <div className="mt-4"><label className="block">Email</label>
                                     <Input
@@ -134,13 +132,13 @@ function Register(props) {
                                         validations={[required, checkEmail]}
                                     /></div>
 
-                                <div className="mt-4"><label className="block">Password</label>
+                                <div className="mt-4"><label className="block">Mật khẩu</label>
                                     <Input
                                         onChange={onChangePassword}
                                         type="password"
                                         className="block border border-gray-300 w-full p-3 rounded mt-1"
                                         name="password"
-                                        placeholder="Password"
+                                        placeholder="Mật khẩu"
                                         value={password}
                                         validations={[required, minLength]}
                                     /></div>
@@ -148,22 +146,23 @@ function Register(props) {
                                 <button
                                     type="submit"
                                     className="w-full text-center mt-4 py-3 rounded bg-blue-400 text-white hover:bg-blue-500 focus:outline-none my-1"
-                                >Create Account
+                                >Tạo tài khoản
                                 </button>
 
                                 <div className="text-center text-sm text-grey-dark mt-4">
-                                    By signing up, you agree to the&nbsp;
-                                    <Link className="underline border-b border-grey-dark text-grey-dark" to={"#"}>
-                                        Terms of Service
-                                    </Link> and&nbsp;
-                                    <Link className="underline border-b border-grey-dark text-grey-dark" to={"#"}>
-                                        Privacy Policy
+                                    Bằng cách đăng kí, bạn xác nhận bạn đã đọc và chấp nhận&nbsp;
+                                    <Link className="underline border-b border-grey-dark text-blue-500" to={"#"}>
+                                        điều khoản dịch vụ
+                                    </Link> và&nbsp;
+                                    <Link className="underline border-b border-grey-dark text-blue-500" to={"#"}>
+                                        chính sách riêng tư
                                     </Link>
+                                    &nbsp;của chúng tôi.
                                 </div>
-                                <div className="text-grey-dark mt-6 flex justify-center">
-                                    Already have an account?&nbsp;
+                                <div className="text-grey-dark mt-6 flex justify-center text-sm">
+                                    Bạn đã có tài khoản?&nbsp;
                                     <Link className="underline border-b border-blue text-blue-400" to={"/login"}>
-                                        Log in
+                                        Đăng nhập
                                     </Link>.
                                 </div>
                             </div>
@@ -209,7 +208,6 @@ function Register(props) {
 
                 </div>
             </div>
-        </>
     );
 }
 
