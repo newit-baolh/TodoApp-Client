@@ -93,7 +93,7 @@ function ModalForm(props) {
                 <div>
                     <form onSubmit={handleSubmit}
                           className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-1/2 my-6 mx-auto max-w-3xl">
+                        <div className="relative w-1/2 my-6 mx-auto max-w-3xl text-sm">
                             {/*content*/}
                             <div ref={triggerRef}
                                  className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -142,10 +142,10 @@ function ModalForm(props) {
                                         </select>
                                     </div>
                                     <label className="block text-left">
-                                        <span className="text-gray-700">Mô tả</span>
+                                        <span className="text-gray-700">Nội dung</span>
                                         <textarea name="description" value={inputValues.description} onChange={onChange}
                                                   className="form-textarea mt-1 block w-full border border-gray-300 p-2"
-                                                  rows="3" placeholder="Thêm mô tả."/>
+                                                  rows="3" placeholder="Nhập nội dung."/>
                                     </label>
                                 </div>
 

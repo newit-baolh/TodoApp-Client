@@ -90,16 +90,16 @@ function Content(props) {
     }
 
     return (
-        <div className="text-center col-end-13 col-span-12 rounded-lg shadow-lg border border-gray-200 ">
-            <div className="text-left pb-2 ml-6 mt-5">
+        <div className="text-center col-end-13 col-span-12 rounded-lg shadow-lg border border-gray-200 z-10">
+            <div className="text-left pb-2 ml-6 mt-5 z-10">
                 <ModalForm onSubmit={onSubmitData} edit={edit}/>
             </div>
             <div className="flex justify-start items-center mx-6 mt-4 relative mb-10">
                 <Search onSearch={onSearchItem}/>
                 <Sort/>
             </div>
-            <div className="bg-white rounded-lg py-6">
-                <div className="block overflow-x-auto mx-6 pb-5">
+            <div className="bg-white rounded-lg py-6 z-10">
+                <div className="block overflow-x-auto mx-6 pb-5 z-10">
                     <TaskList data={data} onDelete={onDelete} onEdit={(item) => setEdit(item)} paginated={paginated}/>
                 </div>
                 <Pagination data={data} paginated={paginated} pageNumber={(item)=>setPageNumber(item)}/>

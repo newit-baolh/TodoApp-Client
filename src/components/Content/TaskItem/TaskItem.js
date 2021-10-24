@@ -14,9 +14,11 @@ function TaskItem(props) {
 
     const {onDelete, onEdit} = props
     const [data, setData] = useState([])
+    const [showSpan, setShowSpan] = useState(false)
+    const [id, setId] = useState([])
     useEffect(() => {
         setData(props.paginated.displayItemsPage)
-    },[props.paginated.displayItemsPage])
+    }, [props.paginated.displayItemsPage])
 
     const dateTime = data.map(item => {
         const dateString = item.updatedAt
@@ -33,23 +35,51 @@ function TaskItem(props) {
         }
         return formatDate(dateString)
     })
+
+    const handleshowSpan = (item) => {
+        setShowSpan(!showSpan)
+        setId(item)
+    }
+
     return (
         <>{
             data && data.map((item, index) => (
                 <tr key={index} className={
                     item.status !== "Đã xong"
-                        ? "w-full font-light text-gray-700  whitespace-no-wrap border border-b-1 "
-                        : "w-full font-light text-gray-700  whitespace-no-wrap border border-b-1 bg-gray-200"
+                        ? "w-full font-light text-gray-700  whitespace-no-wrap border border-blue-300 z-20 "
+                        : "w-full font-light text-gray-700  whitespace-no-wrap border border-blue-300 z-20"
                 }>
-                    <td className="px-4 py-4">{index + 1}</td>
-                    <td className="px-4 py-4">{item.name}</td>
+                    <td><span
+                        className={item.status === "Đã xong"
+                            ? "text-sm line-through font-semibold text-gray-300"
+                            : "py-1 text-sm font-semibold  "}>{index + 1}</span>
+                    </td>
+                    <td className="relative cursor-pointer"><span
+
+                        className={item.status === "Đã xong"
+                            ? "text-sm line-through font-semibold text-gray-300 "
+                            : (item.status === "Đang làm"
+                                ? "text-sm text-yellow-600 font-semibold"
+                                : "text-sm font-semibold text-blue-600")}
+                        onClick={() => handleshowSpan(item)}
+
+                    >
+                        {item.name}
+                    </span>
+
+                        {showSpan && item.id === id.id
+                            ? (showSpan && item.description !== "" ? (<span className={"absolute top-0 left-52 w-full overflow-auto max-h-48 break-words bg-green-200 inline-block px-2 py-2 border rounded-lg shadow-lg duration-200 text-sm "}>{item.description}
+                        </span>): (<span className={"absolute top-0 left-52 w-44 bg-yellow-200 inline-block px-1 py-1 border rounded-lg shadow-lg duration-200 text-sm "}>Không có nội dung!!!
+                        </span>) )
+                            :""}
+                    </td>
                     <td className="px-4 py-4">
               <span className={
                   item.status === "Đang làm"
-                      ? "text-sm bg-blue-500 text-white rounded-full px-2 py-1"
+                      ? "text-sm bg-yellow-500 text-white rounded-full px-2 py-1"
                       : (item.status === "Cần làm"
-                          ? "text-sm bg-green-500 text-white rounded-full px-2 py-1"
-                          : "text-sm bg-gray-500 text-white rounded-full px-2 py-1")
+                          ? "text-sm bg-blue-400 text-white rounded-full px-2 py-1"
+                          : "text-sm bg-gray-300 line-through text-white rounded-full px-2 py-1")
               }>
                 {item.status === "Đang làm"
                     ? "Đang làm"
@@ -59,7 +89,13 @@ function TaskItem(props) {
               </span>
                     </td>
                     <td className="px-4 py-4">
-                        <span className="bg-blue-200 px-6 rounded-md py-2">{dateTime[index]}</span>
+                        <span className={item.status === "Đã xong"
+                            ? "text-sm line-through font-semibold text-gray-300"
+                            : (item.status === "Đang làm"
+                                ? "text-sm text-yellow-600 font-semibold"
+                                : "text-sm font-semibold text-blue-600")}
+                        >{dateTime[index]}
+                        </span>
                     </td>
                     <td className="text-center px-4 py-4 flex gap-5 items-center justify-center">
                         <button>
