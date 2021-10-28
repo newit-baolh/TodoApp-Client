@@ -18,13 +18,26 @@ const login = (email, password) => {
 }
 const logout = () => {
     localStorage.removeItem("user")
+    localStorage.clear()
+    window.location.href = "/login"
 }
 
 const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"))
 }
+const confirmEmail = (user) => {
+    return axios.post(`${API_URL}/auth/confirmEmail`, user)
+}
+const verifiedEmail = (user) => {
+    return axios.post(`${API_URL}/auth/verifyEmail`, user).then((response) => {
+        if (response.data.accessToken) {
+            localStorage.setItem("user", JSON.stringify(response.data))
+        }
+        return response.data
+    })
+}
 const authServices = {
-    register, login, logout, getCurrentUser
+    register, login, logout, getCurrentUser, confirmEmail, verifiedEmail
 }
 
 export default authServices

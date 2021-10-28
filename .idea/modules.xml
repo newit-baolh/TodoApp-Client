@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://E:/Docker/backend/.idea/backend.iml" filepath="E:/Docker/backend/.idea/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../redux/.idea/redux.iml" filepath="$PROJECT_DIR$/../redux/.idea/redux.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/todo.iml" filepath="$PROJECT_DIR$/.idea/todo.iml" />
+      <module fileurl="file://E:/server-api/todo-backend/.idea/todo-backend.iml" filepath="E:/server-api/todo-backend/.idea/todo-backend.iml" />
+      <module fileurl="file://E:/server-api/todo-client/.idea/todo-client.iml" filepath="E:/server-api/todo-client/.idea/todo-client.iml" />
     </modules>
   </component>
 </project>

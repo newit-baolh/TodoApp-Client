@@ -1,5 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {useTranslation} from "react-i18next";
 
 ModalForm.propTypes = {
     onSubmit: PropTypes.func,
@@ -20,6 +21,7 @@ function ModalForm(props) {
         status: "Cần làm",
         description: ""
     })
+    const {t} = useTranslation()
 
     useEffect(() => {
         if (editing !== null) {
@@ -87,7 +89,7 @@ function ModalForm(props) {
                             description: ""
                         })
                     }}>
-                <i className="fas fa-plus-circle"/>&nbsp; Thêm mới
+                <i className="fas fa-plus-circle"/>&nbsp; {t('ADD TODO')}
             </button>
             {showModal && (
                 <div>
@@ -99,7 +101,7 @@ function ModalForm(props) {
                                  className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
                                 <h2 className=" bg-blue-400 text-white text-2xl font-semibold py-2 relative rounded-t-lg text-center">
-                                    Thêm công việc
+                                    {t('ADD TODO')}
                                     <svg
                                         onClick={() => setShowModal(false)}
                                         xmlns="http://www.w3.org/2000/svg"
@@ -118,34 +120,34 @@ function ModalForm(props) {
                                 </h2>
                                 <div className="relative py-3 px-10 flex-auto">
                                     <div className="py-3">
-                                        <label className="block text-left pb-2 text-gray-700">Tên công việc</label>
+                                        <label className="block text-left pb-2 text-gray-700">{t('TODO NAME')}</label>
                                         <input
                                             name="name"
                                             value={inputValues.name}
                                             onChange={onChange}
                                             className=" py-1.5 w-full bg-gray-100 px-4 outline-none"
                                             type="text"
-                                            placeholder="Nhập tên công việc"
+                                            placeholder={t('INPUT NAME TODO')}
                                         />
                                     </div>
                                     <div className="py-5 text-left">
-                                        <label className=" block pb-2 text-gray-700">Trạng thái</label>
+                                        <label className=" block pb-2 text-gray-700">{t('STATUS')}</label>
                                         <select
                                             name="status"
                                             value={inputValues.status}
                                             onChange={onChange}
                                             className="block w-full bg-gray-100 py-1.5 px-4 outline-none  "
                                         >
-                                            <option>Cần làm</option>
-                                            <option>Đang làm</option>
-                                            <option>Đã xong</option>
+                                            <option>{t('NEED TODO')}</option>
+                                            <option>{t('PENDING')}</option>
+                                            <option>{t('DONE')}</option>
                                         </select>
                                     </div>
                                     <label className="block text-left">
-                                        <span className="text-gray-700">Nội dung</span>
+                                        <span className="text-gray-700">{t('CONTENT')}</span>
                                         <textarea name="description" value={inputValues.description} onChange={onChange}
                                                   className="form-textarea mt-1 block w-full border border-gray-300 p-2"
-                                                  rows="3" placeholder="Nhập nội dung."/>
+                                                  rows="3" placeholder={t('WRITE CONTENT')}/>
                                     </label>
                                 </div>
 
@@ -157,13 +159,13 @@ function ModalForm(props) {
                                         type="button"
                                         onClick={() => setShowModal(false)}
                                     >
-                                        Close
+                                        {t('CLOSE')}
                                     </button>
                                     <button
                                         className="bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="submit"
                                     >
-                                        Save Changes
+                                        {t('SAVE')}
                                     </button>
                                 </div>
                             </div>

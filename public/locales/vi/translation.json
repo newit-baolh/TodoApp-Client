@@ -1,0 +1,45 @@
+{
+  "Home": {
+    "1": "Trang Chủ"
+  },
+  "Group": {
+    "1": "Nhóm"
+  },
+  "Todo": {
+    "1": "Công việc"
+  },
+  "Calender": {
+    "1": "Lịch"
+  },
+  "Your Profile": "Thông tin của bạn",
+  "Settings": "Cài đặt",
+  "Sign out": "Đăng xuất",
+
+
+  "MANAGEMENT TODO": "QUẢN LÝ CÔNG VIỆC",
+  "ADD TODO": "Thêm công việc",
+  "TODO NAME": "Tên công việc",
+  "STATUS": "Trạng thái",
+  "NEED TODO": "Cần làm",
+  "PENDING": "Đang làm",
+  "DONE": "Đã xong",
+  "CONTENT": "Nội dung",
+  "WRITE CONTENT": "Nhập nội dung",
+  "INPUT NAME TODO": "Nhập tên công việc",
+  "CLOSE": "Đóng",
+  "SAVE": "Lưu thay đổi",
+
+  "TIME": "Thời gian",
+  "ACTION": "Hành động",
+
+  "SEARCH": "Nhập từ khoá tìm kiếm ...",
+  "FILTER": "Sắp xếp",
+  "A-Z": "Tên A-Z",
+  "Z-A": "Tên Z-A",
+
+  "CONTENT EMPTY": "Không có nội dung!!!"
+
+
+
+
+}

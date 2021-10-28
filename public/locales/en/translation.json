@@ -1,0 +1,41 @@
+{
+  "Home": {
+    "1": "Home"
+  },
+  "Group": {
+    "1": "Group"
+  },
+  "Todo": {
+    "1": "Todo"
+  },
+  "Calender": {
+    "1": "Calender"
+  },
+  "Your Profile": "Your Profile",
+  "Settings": "Your Profile",
+  "Sign out": "Sign out",
+
+  "MANAGEMENT TODO": "MANAGEMENT TODO",
+
+  "ADD TODO": "New Todo",
+  "TODO NAME": "Name",
+  "STATUS": "Status",
+  "NEED TODO": "Make",
+  "PENDING": "Pending",
+  "DONE": "Done",
+  "CONTENT": "Content",
+  "WRITE CONTENT": "Write content",
+  "INPUT NAME TODO": "Input name",
+  "CLOSE": "Close",
+  "SAVE": "Save Changes",
+
+  "TIME": "Time",
+  "ACTION": "Action",
+
+  "SEARCH": "Input keyword search ...",
+  "FILTER": "Filter",
+  "A-Z": "Name A-Z",
+  "Z-A": "Name Z-A",
+
+  "CONTENT EMPTY": "Content empty !!!"
+}

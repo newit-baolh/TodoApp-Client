@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {useTranslation} from "react-i18next";
 
 TaskItem.propTypes = {
     onDelete: PropTypes.func,
@@ -16,6 +17,8 @@ function TaskItem(props) {
     const [data, setData] = useState([])
     const [showSpan, setShowSpan] = useState(false)
     const [id, setId] = useState([])
+    const {t} = useTranslation()
+
     useEffect(() => {
         setData(props.paginated.displayItemsPage)
     }, [props.paginated.displayItemsPage])
@@ -25,7 +28,7 @@ function TaskItem(props) {
         const formatDate = (dateString) => {
             const options = {
                 year: "numeric",
-                month: "long",
+                month: "numeric",
                 day: "numeric",
                 hour: '2-digit',
                 minute: '2-digit',
@@ -69,7 +72,7 @@ function TaskItem(props) {
 
                         {showSpan && item.id === id.id
                             ? (showSpan && item.description !== "" ? (<span className={"absolute top-0 left-52 w-full overflow-auto max-h-48 break-words bg-green-200 inline-block px-2 py-2 border rounded-lg shadow-lg duration-200 text-sm "}>{item.description}
-                        </span>): (<span className={"absolute top-0 left-52 w-44 bg-yellow-200 inline-block px-1 py-1 border rounded-lg shadow-lg duration-200 text-sm "}>Không có nội dung!!!
+                        </span>): (<span className={"absolute top-0 left-52 w-44 bg-yellow-200 inline-block px-1 py-1 border rounded-lg shadow-lg duration-200 text-sm "}>{t("CONTENT EMPTY")}
                         </span>) )
                             :""}
                     </td>
@@ -82,10 +85,10 @@ function TaskItem(props) {
                           : "text-sm bg-gray-300 line-through text-white rounded-full px-2 py-1")
               }>
                 {item.status === "Đang làm"
-                    ? "Đang làm"
+                    ? `${t('PENDING')}`
                     : (item.status === "Cần làm"
-                        ? "Cần làm"
-                        : "Đã xong")}
+                        ? `${t('NEED TODO')}`
+                        : `${t('DONE')}`)}
               </span>
                     </td>
                     <td className="px-4 py-4">

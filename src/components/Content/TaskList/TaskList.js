@@ -1,22 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import TaskItem from "../TaskItem/TaskItem";
+import {useTranslation} from "react-i18next";
 
-TaskList.propTypes = {
-    
-};
 
 function TaskList(props) {
+    const {t} = useTranslation()
 
     return (
         <table className="w-full text-center rounded-lg table-auto z-10">
             <thead>
             <tr className="text-gray-800 border border-b-0 bg-blue-300">
                 <th className="px-4 py-3">#</th>
-                <th className="px-4 py-3">Tên công việc</th>
-                <th className="px-4 py-3">Trạng thái</th>
-                <th className="px-4 py-3">Thời gian</th>
-                <th className="px-4 py-3">Hành động</th>
+                <th className="px-4 py-3">{t('TODO NAME')}</th>
+                <th className="px-4 py-3">{t('STATUS')}</th>
+                <th className="px-4 py-3">{t('TIME')}</th>
+                <th className="px-4 py-3">{t('ACTION')}</th>
             </tr>
             </thead>
             <tbody>

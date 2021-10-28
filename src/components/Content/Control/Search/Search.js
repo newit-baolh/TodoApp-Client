@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
+import {useTranslation} from "react-i18next";
 
 Search.propTypes = {
     onSearch: PropTypes.func,
@@ -13,6 +14,7 @@ function Search(props) {
     const {onSearch} = props
     const [search, setSearch] = useState("")
     const typingTimeOutRef = useRef(null)
+    const {t} = useTranslation()
 
     const handleOnChange = (e) => {
         const {value} = e.target
@@ -42,7 +44,7 @@ function Search(props) {
                 value={search}
                 onChange={handleOnChange}
                 type="text"
-                placeholder="Nhập từ khoá tìm kiếm..."
+                placeholder={t('SEARCH')}
                 className=" inline-block py-1.5 bg-gray-100 px-4 w-full outline-none  rounded-lg focus:shadow  left-0"
             />
             {search && <span
