@@ -15,13 +15,12 @@
   "Settings": "Cài đặt",
   "Sign out": "Đăng xuất",
 
-
   "MANAGEMENT TODO": "QUẢN LÝ CÔNG VIỆC",
   "ADD TODO": "Thêm công việc",
   "TODO NAME": "Tên công việc",
   "STATUS": "Trạng thái",
-  "NEED TODO": "Cần làm",
-  "PENDING": "Đang làm",
+  "PENDING": "Cần làm",
+  "DOING": "Đang làm",
   "DONE": "Đã xong",
   "CONTENT": "Nội dung",
   "WRITE CONTENT": "Nhập nội dung",
@@ -38,8 +37,4 @@
   "Z-A": "Tên Z-A",
 
   "CONTENT EMPTY": "Không có nội dung!!!"
-
-
-
-
 }
